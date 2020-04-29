@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20160625062916) do
   end
 
   create_table "line_items", force: :cascade do |t|
+    t.string   "image"
     t.integer  "order_id"
     t.integer  "product_id"
     t.integer  "quantity"
