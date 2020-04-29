@@ -17,8 +17,6 @@
       </thead>
       <tbody>
         <% @orderDetails.each do |item| %>
-
-        <%= puts "----------------------", item.inspect %>
           <%= render 'item', product: item %>
         <% end %>
       </tbody>
