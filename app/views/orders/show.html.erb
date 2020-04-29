@@ -16,9 +16,10 @@
         </tr>
       </thead>
       <tbody>
-        <%= puts @orderDetails.inspect %>
         <% @orderDetails.each do |item| %>
-          <%= render 'item', product: item[:product], quantity: item[:quantity].to_i %>
+
+        <%= puts "----------------------", item.inspect %>
+          <%= render 'item', product: item %>
         <% end %>
       </tbody>
       <tfoot>
@@ -27,7 +28,7 @@
             TOTAL:
           </th>
           <th>
-            <%= humanized_money_with_symbol cart_subtotal_cents / 100.0 %>
+            <%= humanized_money_with_symbol @order.total_cents / 100.0 %>
           </th>
         </tr>
       </tfoot>
