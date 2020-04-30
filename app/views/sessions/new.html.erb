@@ -1,9 +1,20 @@
-<h1>Login</h1>
-
+<h2>Login</h2>
+<p>&nbsp</p>
+<div class="card" style="width: 35rem;">
 <%= form_tag '/login' do %>
 
-  Email: <%= text_field_tag :email %>
-  Password: <%= password_field_tag :password %>
-  <%= submit_tag "Submit" %>
+<div class="form-group">
+    <label for="exampleInputEmail1">Email:</label>
+    <%= text_field_tag :email,"", class: "form-control" %>
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password:</label>
+    <%= password_field_tag :password,"", class: "form-control" %>
+  </div>
+  
+  <%= submit_tag "Submit", class: "btn btn-primary" %>
+  
 
 <% end %>
+</div>
