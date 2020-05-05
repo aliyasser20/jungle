@@ -74,4 +74,74 @@ RSpec.describe User, type: :model do
       expect(subject).to_not be_valid
     end
   end
+
+  describe '.authenticate_with_credentials' do
+    it 'is should not login if password is incorrect' do
+
+      user = User.new(
+        email: 'test@test.com',
+        first_name: 'Ali',
+        last_name: 'Sayed',
+        password: 'password',
+        password_confirmation: 'password'
+      )
+
+      user.save!
+
+      expect(user).to be_valid
+
+      expect(User.authenticate_with_credentials("test@test.com", "password_incorrect")).to_not eq(user)
+    end
+
+    it 'is should not login if email is incorrect' do
+
+      user = User.new(
+        email: 'test@test.com',
+        first_name: 'Ali',
+        last_name: 'Sayed',
+        password: 'password',
+        password_confirmation: 'password'
+      )
+
+      user.save!
+
+      expect(user).to be_valid
+
+      expect(User.authenticate_with_credentials("test_incorrect@test.com", "password")).to_not eq(user)
+    end
+
+    it 'is should login if there are sapce before or after email' do
+
+      user = User.new(
+        email: 'test@test.com',
+        first_name: 'Ali',
+        last_name: 'Sayed',
+        password: 'password',
+        password_confirmation: 'password'
+      )
+
+      user.save!
+
+      expect(user).to be_valid
+
+      expect(User.authenticate_with_credentials("   test@test.com  ", "password")).to eq(user)
+    end
+
+    it 'is should login if case for email is different' do
+
+      user = User.new(
+        email: 'test@test.com',
+        first_name: 'Ali',
+        last_name: 'Sayed',
+        password: 'password',
+        password_confirmation: 'password'
+      )
+
+      user.save!
+
+      expect(user).to be_valid
+
+      expect(User.authenticate_with_credentials("TEST@test.com", "password")).to eq(user)
+    end
+  end
 end
